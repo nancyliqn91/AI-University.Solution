@@ -1,0 +1,23 @@
+@{
+  Layout = "_Layout";
+}
+
+
+@model AIUniversity.Models.Department
+
+<div class="card">
+  <div class="card-header">
+    <h2>Department Details</h2>
+  </div>
+  <div class="card-body">
+    <h3 class="card-title">Department Name: @Html.DisplayFor(model => model.DepartmentName)</h3>
+    <h3 class="card-title">Department Description: @Html.DisplayFor(model => model.DepartmentDescription)</h3>
+  </div>
+</div>
+
+<p>@Html.ActionLink("Back to Departments", "Index", null, new { @class = "btn btn-secondary mb-2" })</p>
+<p>@Html.ActionLink("Edit Department", "Edit", new { id = Model.DepartmentId }, new { @class = "btn btn-warning mb-2" })</p>
+<p>@Html.ActionLink("Delete Department", "Delete", new { id = Model.DepartmentId }, new { @class = "btn btn-danger mb-2" })</p>
+
+
+

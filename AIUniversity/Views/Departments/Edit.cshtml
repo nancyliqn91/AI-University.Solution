@@ -1,0 +1,27 @@
+@{
+  Layout = "_Layout";
+}
+
+@model AIUniversity.Models.Department
+
+<h4>Edit @Html.DisplayFor(model=>model.DepartmentName)</h4>
+<hr />
+
+<p>@Html.ValidationMessageFor(model => model.DepartmentName, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
+
+@using (Html.BeginForm())
+{
+@Html.HiddenFor(model => model.DepartmentId)
+<div class = "container">
+  <p>Department</p>
+  <div class="row">
+    <div class="col-6 col-md-3"><p>Name: @Html.TextBoxFor(model => model.DepartmentName)</p></div>
+    <div class="col-6 col-md-4"><p>Description: @Html.TextBoxFor(model => model.DepartmentDescription)</p></div>
+  </div>
+</div>
+  
+     
+  <input type="submit" value="Add Department"/>
+}
+<br>
+<p>@Html.ActionLink("Show Departments", "Index")</p>

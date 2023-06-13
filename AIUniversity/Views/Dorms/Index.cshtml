@@ -1,0 +1,23 @@
+@{
+  Layout = "_Layout";
+}
+
+@using AIUniversity.Models;
+
+<h1>Dorms</h1>
+
+<div class="box">
+  @if (@Model.Count == 0)
+  {
+    <h3>No dorms have been added yet!</h3>
+  } 
+
+  <ul>
+    @foreach(Dorm dorm in Model)
+    {
+      <li>@Html.ActionLink($"{dorm.DormName}", "Details", new { id = dorm.DormId })</li>
+    }
+  </ul>
+</div>
+
+<p>@Html.ActionLink("Add New Dorm", "Create")</p>

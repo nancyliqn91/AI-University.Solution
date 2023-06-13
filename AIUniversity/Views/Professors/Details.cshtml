@@ -1,0 +1,30 @@
+@{
+  Layout = "_Layout";
+}
+
+@using AIUniversity.Models
+@model AIUniversity.Models.Professor
+
+<h2>Professor Details</h2>
+<hr />
+<h3>Professor First Name: @Html.DisplayFor(model => model.ProfessorFirstName), ProfessorLastName: @Html.DisplayFor(model => model.ProfessorLastName)</h3>
+
+@if(@Model.Courses.Count == 0)
+{
+  <p>This courses have been added to this professor yet.</p>
+}
+else
+{
+  <h4>Courses the professor has:</h4>
+  <ul>
+  @foreach(Course course in Model.Courses)
+  {
+    <li>@course.CourseName</li>
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("Edit Professor", "Edit", new { id = Model.ProfessorId })</p>
+<p>@Html.ActionLink("Delete Professor", "Delete", new { id = Model.ProfessorId })</p>
+
+<p>@Html.ActionLink("Back to list", "Index")</p>

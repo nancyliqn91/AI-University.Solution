@@ -1,0 +1,25 @@
+@{
+  Layout = "_Layout";
+}
+
+@model AIUniversity.Models.Professor
+
+<h4>Add a new professor</h4>
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.ProfessorFirstName)
+  @Html.TextBoxFor(model => model.ProfessorFirstName)
+  @Html.LabelFor(model => model.ProfessorLastName)
+  @Html.TextBoxFor(model => model.ProfessorLastName)
+  @Html.LabelFor(model => model.ProfessorDescription)
+  @Html.TextBoxFor(model => model.ProfessorDescription)
+
+  @Html.LabelFor(model => model.ProfessorDateOfBirth)
+  @Html.TextBoxFor(model => model.ProfessorDateOfBirth, new { type = "date"})
+  @*input email? *@
+  @Html.LabelFor(model => model.ProfessorEmail)
+  @Html.TextBoxFor(model => model.ProfessorEmail)
+
+  <input type="submit" value="Add new professor" />
+}
+<p>@Html.ActionLink("Show all professors", "Index")</p>
