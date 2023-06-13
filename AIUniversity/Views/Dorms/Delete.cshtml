@@ -1,0 +1,14 @@
+@{
+  Layout = "_Layout";
+}
+
+@model AIUniversity.Models.Dorm
+
+<h2>Are you sure you want to delete this Dorm?</h2>
+
+@Html.DisplayNameFor(model => model.DormName): @Html.DisplayFor(model => model.DormName)
+@using (Html.BeginForm())
+{
+    <input type="submit" value="Delete" />
+}
+@Html.ActionLink("Back to List", "Index")

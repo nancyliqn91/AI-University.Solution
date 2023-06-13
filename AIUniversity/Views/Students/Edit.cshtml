@@ -1,0 +1,46 @@
+@{
+  Layout = "_Layout";
+}
+
+@model AIUniversity.Models.Student
+
+<h4>Edit this Student: @Html.DisplayFor(m => m.StudentFirstName), @Html.DisplayFor(m => m.StudentLastName)</h4>
+
+<p>@Html.ValidationMessageFor(m=>m.StudentLastName,"", new {@class = "text-danger", @style = "font-weight: 600;"})</p>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(m => m.StudentId)
+
+<div class = "container">
+  <p>Student</p>
+  <div class="row">
+    <div class="col-6 col-md-2"><p>First Name: </p></div>
+    <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.StudentFirstName)</div> 
+  </div>
+  <div class="row">
+     <div class="col-6 col-md-2"><p>Last Name: </p></div>
+     <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.StudentLastName)</div> 
+  </div>
+  <div class="row">
+     <div class="col-6 col-md-2"><p>Email: </p></div>
+     <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.StudentEmail)</div> 
+  </div>
+  <div class="row">
+     <div class="col-6 col-md-2"><p>Date of Birth: </p></div>
+     <div class="col-6 col-md-2"> @Html.EditorFor(model => model.StudentDateOfBirth, new { type = "date"})</div> 
+  </div>
+
+  @Html.LabelFor(model => model.StudentDepartment)
+  @Html.DropDownList("DepartmentId")
+
+  @Html.LabelFor(model => model.StudentDorm)
+  @Html.DropDownList("DormId")
+  
+  <div class="row">
+    <div class="col-6 col-md-2"><input type="submit" value="Edit Student"/></div>
+  </div>
+</div>
+}
+
+<p>@Html.ActionLink("Back to list","Index")<p>

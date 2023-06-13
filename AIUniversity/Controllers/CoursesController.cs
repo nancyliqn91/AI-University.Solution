@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using AIUniversity.Models;
 using System.Collections.Generic;
-using System.Linq; 
+using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 
 using Microsoft.AspNetCore.Identity;
@@ -23,15 +23,18 @@ namespace AIUniversity.Controllers
     public CoursesController(UserManager<ApplicationUser> userManager, AIUniversityContext db)
     {
       _userManager = userManager;
-
       _db = db;
     }
-    
+
     [AllowAnonymous]
     public ActionResult Index()
     {
       List<Course> allCourses = _db.Courses
-      .OrderBy(course => course.CourseName).ToList();                            
+      // add department and professor
+      .Include(course => course.Department)
+      .Include(course => course.Professor)
+
+      .OrderBy(course => course.CourseName).ToList();
       return View(allCourses);
     }
 
@@ -40,22 +43,27 @@ namespace AIUniversity.Controllers
       string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
 
-      List<Courses> userCourses = _db.Courses
+      List<Course> userCourses = _db.Courses
       .Where(entry => entry.User.Id == currentUser.Id)
-      .OrderBy(course => course.Course).ToList();                            
+      .OrderBy(course => course.CourseName).ToList();
       return View(userCourses);
     }
 
     public ActionResult Create()
     {
+      // STORE DEPARTMENTS IN VIEWBAG
+      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "DepartmentName");
+      ViewBag.ProfessorId = new SelectList(_db.Professors, "ProfessorId", "ProfessorLastName");
       return View();
     }
 
     [HttpPost]
-    public async Task<ActionResult> Create(Course Course)
+    public async Task<ActionResult> Create(Course course)
     {
       if (!ModelState.IsValid)
       {
+        ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "DepartmentName");
+        ViewBag.ProfessorId = new SelectList(_db.Professors, "ProfessorId", "ProfessorLastName");
         return View(course);
       }
       else
@@ -68,33 +76,36 @@ namespace AIUniversity.Controllers
         _db.SaveChanges();
         return RedirectToAction("Index");
       }
-      
+
     }
-   
+
     [AllowAnonymous]
     public ActionResult Details(int id)
     {
       Course thisCourse = _db.Courses
-                             .Include(course => course.JoinEntities)
+                          .Include(item => item.Department)
+                          .Include(item => item.Professor)
+                             .Include(course => course.StudentCourses)
                              .ThenInclude(join => join.Student)
                              .FirstOrDefault(course => course.CourseId == id);
       return View(thisCourse);
     }
 
-    public async Task<ActionResult> Edit(int id)
+    public ActionResult Edit(int id)
     {
-      string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
+      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "DepartmentName");
+      ViewBag.ProfessorId = new SelectList(_db.Professors, "ProfessorId", "ProfessorLastName");
 
       Course thisCourse = _db.Courses.FirstOrDefault(course => course.CourseId == id);
-      if (thisCourse.User == currentUser)
-      {
-        return View(thisCourse);
-      }
-      else
-      {
-        return RedirectToAction("Index");
-      }
+      // if (thisCourse.User == currentUser)
+      // {
+      //   return View(thisCourse);
+      // }
+      // else
+      // {
+      //   return RedirectToAction("Index");
+      // }
+      return View(thisCourse);
     }
 
     [HttpPost]
@@ -119,7 +130,7 @@ namespace AIUniversity.Controllers
       {
         return RedirectToAction("Index");
       }
-      
+
     }
 
     [HttpPost, ActionName("Delete")]
@@ -137,14 +148,14 @@ namespace AIUniversity.Controllers
       ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
 
       List<Student> userStudents = _db.Students
-                                .Where(entry => entry.User.Id == currentUser.Id)
-                                .OrderBy(student => student.StudentName)
+                                // .Where(entry => entry.User.Id == currentUser.Id)
+                                .OrderBy(student => student.StudentLastName)
                                 .ToList();
 
       Course thisCourse = _db.Courses.FirstOrDefault(course => course.CourseId == id);
-      
-      ViewBag.StudentId = new SelectList(userStudents, "StudentId", "StudentName");
-      
+
+      ViewBag.StudentId = new SelectList(userStudents, "StudentId", "StudentFullName");
+
       return View(thisCourse);
     }
 
@@ -152,17 +163,17 @@ namespace AIUniversity.Controllers
     public ActionResult AddStudent(Course course, int studentId)
     {
       #nullable enable
-      StudentCourse? joinEntity = _db.StudentCourse.FirstOrDefault(join => (join.StudentId == studentId && join.CourseId == course.CourseId));
+      StudentCourse? joinEntity = _db.StudentCourses.FirstOrDefault(join => (join.StudentId == studentId && join.CourseId == course.CourseId));
       #nullable disable
 
       if (joinEntity == null && studentId != 0)
       {
-        _db.StudentCourses.Add(new StudentCourse() { StudentId = studentId, Course = course.CourseId });
+        _db.StudentCourses.Add(new StudentCourse() { StudentId = studentId, CourseId = course.CourseId });
         _db.SaveChanges();
       }
 
       return RedirectToAction("Details", new { id = course.CourseId });
-    }  
+    }
 
     [HttpPost]
     public async Task<ActionResult> DeleteJoin(int joinId)
@@ -171,7 +182,7 @@ namespace AIUniversity.Controllers
       ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
 
       StudentCourse joinEntry = _db.StudentCourses.FirstOrDefault(entry => entry.StudentCourseId == joinId);
-      Course thisCourse = _db.Courses.FirstOrDefault(entry => entry.CourseId == joinEntry.Course);
+      Course thisCourse = _db.Courses.FirstOrDefault(entry => entry.CourseId == joinEntry.CourseId);
       if (thisCourse.User == currentUser)
       {
         _db.StudentCourses.Remove(joinEntry);
@@ -184,43 +195,6 @@ namespace AIUniversity.Controllers
       }
     }
 
-    // public ActionResult Search()
-    // {
-    //   return View();
-    // }
-
-    // [HttpPost]
-    // public ActionResult Search(Course input)
-    // {                                 
-
-    //   string inputString = input.CourseName;
-    //   List<Course> courseList = _db.Courses
-    //                               .Where(course => course.CourseName
-    //                               .Contains(inputString))
-    //                               .ToList();    
-      
-    //   if (courseList.Count != 0)
-    //   {
-    //     return RedirectToAction("Result", courseList);
-    //   }
-      
-    //   else
-    //   {
-    //     return RedirectToAction("NoResult");
-    //   }
-      
-    // }
-
-    // public ActionResult NoResult()
-    // {
-    //   return View();
-    // }
-
-    // public ActionResult Result(List<Course> courseList)
-    // {
-    //   return View(courseList);
-    // }
-    
   }
 }
- 
+

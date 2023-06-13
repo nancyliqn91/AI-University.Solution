@@ -3,6 +3,7 @@ using System;
 using AIUniversity.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AIUniversity.Migrations
 {
     [DbContext(typeof(AIUniversityContext))]
-    partial class AIUniversityContextModelSnapshot : ModelSnapshot
+    [Migration("20230613203654_updateStudentFullName")]
+    partial class updateStudentFullName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -228,10 +230,6 @@ namespace AIUniversity.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("StudentFirstName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("StudentFullName")
                         .IsRequired()
                         .HasColumnType("longtext");
 

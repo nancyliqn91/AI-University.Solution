@@ -3,6 +3,7 @@ using System;
 using AIUniversity.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AIUniversity.Migrations
 {
     [DbContext(typeof(AIUniversityContext))]
-    partial class AIUniversityContextModelSnapshot : ModelSnapshot
+    [Migration("20230613215043_removeStudentConstructor")]
+    partial class removeStudentConstructor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

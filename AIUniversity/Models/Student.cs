@@ -12,6 +12,8 @@ namespace AIUniversity.Models
     [Required(ErrorMessage = "Student must have a last name!")]
     public string StudentLastName { get; set; }    
     [Required(ErrorMessage = "Must add birthday!")]
+
+    public string StudentFullName { get; set;}
     public DateTime StudentDateOfBirth { get; set; }
        
     [Required(ErrorMessage = "Must enter student email!")]
@@ -25,6 +27,7 @@ namespace AIUniversity.Models
     
     public List<StudentClub> StudentClubs { get; set; }
     public List<StudentCourse> StudentCourses { get; set;}
+
 
   }
 }

@@ -31,29 +31,27 @@ namespace AIUniversity.Controllers
     public ActionResult Index()
     {
       List<Professor> allProfessors = _db.Professors
-      .OrderBy(professor => professor.ProfessorDateOfBirth).ToList();                            
+      .OrderBy(professor => professor.ProfessorDateOfBirth)
+      .Include(professor => professor.Department).ToList();                            
       return View(allProfessors);
     }
 
     public ActionResult Create()
     {
+      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "DepartmentName");
       return View();
     }
 
     [HttpPost]
-    public async Task<ActionResult> Create(Professor professor)
+    public ActionResult Create(Professor professor)
     {
       if (!ModelState.IsValid)
       {
+        ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "DepartmentName");
         return View(professor);
       }
       else
       {
-        string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
-
-        professor.User = currentUser;
-
         _db.Professors.Add(professor);
         _db.SaveChanges();
         return RedirectToAction("Index");
@@ -65,28 +63,19 @@ namespace AIUniversity.Controllers
     public ActionResult Details(int id)
     {
       Professor thisProfessor = _db.Professors
-                             .Include(professor => professor.Deparment)
+                             .Include(professor => professor.Department)
 
-                             .ThenInclude(professor => professor.Courses)
+                             .Include(professor => professor.Courses)
 
                              .FirstOrDefault(professor => professor.ProfessorId == id);
       return View(thisProfessor);
     }
 
-    public async Task<ActionResult> Edit(int id)
+    public ActionResult Edit(int id)
     {
-      string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
-
       Professor thisProfessor = _db.Professors.FirstOrDefault(professor => professor.ProfessorId == id);
-      if (thisProfessor.User == currentUser)
-      {
-        return View(thisProfessor);
-      }
-      else
-      {
-        return RedirectToAction("Index");
-      }
+      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "DepartmentName");
+      return View (thisProfessor);
     }
 
     [HttpPost]
@@ -97,20 +86,11 @@ namespace AIUniversity.Controllers
       return RedirectToAction("Index");
     }
 
-    public async Task<ActionResult> Delete(int id)
+    public ActionResult Delete(int id)
     {
-      string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
 
       Professor thisProfessor = _db.Professors.FirstOrDefault(professor => professor.ProfessorId == id);
-      if (thisProfessor.User == currentUser)
-      {
-        return View(thisProfessor);
-      }
-      else
-      {
-        return RedirectToAction("Index");
-      }
+      return View(thisProfessor);
       
     }
 

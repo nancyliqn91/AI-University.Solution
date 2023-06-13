@@ -14,15 +14,8 @@
 <ul>
   @foreach(Professor professor in Model)
   {
-    <li>@Html.ActionLink($"{professor.ProfessorFirstName}", "Details", new { id = professor.ProfessorId })</li>
+    <li>@Html.ActionLink($"{professor.ProfessorFirstName}", "Details", new { id = professor.ProfessorId }) | @professor.Department.DepartmentName</li>
   }
 </ul>
 
 <p>@Html.ActionLink("Add new professor", "Create")</p>
-
-@*@if (User.Identity.IsAuthenticated)
-{
-  <p>Hello @User.Identity.Name!</p>
-  
-  <p>@Html.ActionLink("View my classes", "MyClasses")</p>
-}*@

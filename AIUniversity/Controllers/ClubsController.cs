@@ -40,7 +40,7 @@ namespace AIUniversity.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> Create(Club club)
+    public ActionResult Create(Club club)
     {
       if (!ModelState.IsValid)
       {
@@ -57,9 +57,11 @@ namespace AIUniversity.Controllers
     [AllowAnonymous]
     public ActionResult Details(int id)
     {
-      Course thisCourse = _db.Courses
-                             .FirstOrDefault(course => course.CourseId == id);
-      return View(thisCourse);
+      Club thisClub = _db.Clubs
+                        .Include(club => club.StudentClubs)
+                        .ThenInclude(join => join.Student)
+                        .FirstOrDefault(club => club.ClubId == id);
+      return View(thisClub);
     }
 
     public ActionResult Edit(int id)
@@ -77,7 +79,7 @@ namespace AIUniversity.Controllers
       }
       else 
       {
-        _db.Club.Update(club);
+        _db.Clubs.Update(club);
         _db.SaveChanges();
         return RedirectToAction("Index");
       }
@@ -97,33 +99,39 @@ namespace AIUniversity.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-
     
+    public ActionResult AddStudent(int id)
+    {
+      Club thisClub = _db.Clubs.FirstOrDefault(clubs => clubs.ClubId == id);
+      ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "StudentFullName");
+      return View(thisClub);
+    }
+
     [HttpPost]
     public ActionResult AddStudent(Club club, int studentId)
     {
       #nullable enable
-      StudentClub? joinEntity = _db.StudentClub.FirstOrDefault(join => (join.StudentId == studentId && join.ClubId == club.ClubId));
+      StudentClub? joinEntity = _db.StudentClubs.FirstOrDefault(join => (join.StudentId == studentId && join.ClubId == club.ClubId));
       #nullable disable
 
       if (joinEntity == null && studentId != 0)
       {
-        _db.StudentClubs.Add(new StudentClub() { StudentId = studentId, Club = club.ClubId });
+        _db.StudentClubs.Add(new StudentClub() { StudentId = studentId, ClubId = club.ClubId });
         _db.SaveChanges();
       }
 
       return RedirectToAction("Details", new { id = club.ClubId });
     }  
 
-    
+    [HttpPost]
+    public ActionResult DeleteJoin(int joinId)
+    {
+      StudentClub joinEntry = _db.StudentClubs.FirstOrDefault(entry => entry.StudentClubId == joinId);
+      _db.StudentClubs.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
 
-    
-
-
-
-
-   
-    
   }
 }
  

@@ -1,0 +1,43 @@
+@{
+  Layout = "_Layout";
+}
+
+@model AIUniversity.Models.Course
+
+<h4>Edit @Html.DisplayFor(model=>model.CourseName)</h4>
+<hr />
+
+<p>@Html.ValidationMessageFor(model => model.CourseName, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
+
+@using (Html.BeginForm())
+{
+@Html.HiddenFor(model => model.CourseId)
+
+<div class = "container">
+  <p>Course</p>
+  <div class="row">
+    <div class="col-6 col-md-2"><p>Name: </p></div>
+    <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.CourseName)</div> 
+  </div>
+  <div class="row">
+     <div class="col-6 col-md-2"><p>Description: </p></div>
+     <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.CourseDescription)</div> 
+  </div>
+
+  @Html.LabelFor(model => model.Department)
+  @Html.DropDownList("DepartmentId")
+
+  @Html.LabelFor(model => model.Professor)
+  @Html.DropDownList("ProfessorId")
+
+  <div class="row">
+    <div class="col-6 col-md-2"><input type="submit" value="Edit Course"/></div>
+  </div>
+</div>
+  
+  
+     
+
+}
+<br> 
+<p>@Html.ActionLink("Show Courses", "Index")</p>

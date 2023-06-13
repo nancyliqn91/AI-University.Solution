@@ -38,7 +38,7 @@ namespace AIUniversity.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> Create(Dorm dorm)
+    public ActionResult Create(Dorm dorm)
     {
       if (!ModelState.IsValid)
       {
@@ -54,53 +54,40 @@ namespace AIUniversity.Controllers
 
     public ActionResult Details(int id)
     {
-      Dorm thisDorm = _db.Dorms.FirstOrDefault(dorm => dorm.DormId == id);
+      Dorm thisDorm = _db.Dorms
+                              .Include(dorm => dorm.Students)
+                              .FirstOrDefault(dorm => dorm.DormId == id);
       return View(thisDorm);                    
     }
 
-    public ActionResult AddStudent(int id)
+    public ActionResult Edit(int id)
     {
       Dorm thisDorm = _db.Dorms.FirstOrDefault(dorm => dorm.DormId == id);
-      List<Student> students = _db.Students
-                                    .Where(entry => entry.DormId == 0)
-                                    .OrderBy(student => student.StudentLastName)
-                                    .ToList();
-      ViewBag.StudentId = new SelectList(students, "StudentId", "StudentLastName");
       return View(thisDorm);
     }
 
     [HttpPost]
-    public ActionResult AddStudent(Dorm dorm, int studentId)
+    public ActionResult Edit(Dorm dorm)
     {
-      #nullable enable
-      Student? joinStudent = _db.Students.FirstOrDefault(entry => entry.StudentId == studentId);
-      #nullable disable
-      if (studentId == 0 || dorm.Students.Exists(entry => entry.StudentId == studentId))
-      {
-
-      }
-      else
-      {
-        dorm.Students.Add(joinStudent);
-        _db.Dorms.Update(dorm);
-        _db.SaveChanges();
-      }
-      return RedirectToAction("Details", new {id = dorm.DormId});
+      _db.Dorms.Update(dorm);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
 
-    [HttpPost]
-    public ActionResult RemoveStudent(Dorm dorm, int studentId)
+    public ActionResult Delete(int id)
     {
-      #nullable enable
-      Student? joinStudent = _db.Students.FirstOrDefault(entry => entry.StudentId == studentId);
-      #nullable disable
-      if (dorm.Students.Exists(entry => entry.StudentId == studentId))
-      {
-        dorm.Students.Remove(joinStudent);
-        _db.Dorms.Update(dorm);
-        _db.SaveChanges();
-      }
-      return RedirectToAction("Details", new {id = dorm.DormId});
+      Dorm thisDorm = _db.Dorms.FirstOrDefault(dorm => dorm.DormId == id);
+      return View(thisDorm);
     }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      Dorm thisDorm = _db.Dorms.FirstOrDefault(dorm => dorm.DormId == id);
+      _db.Dorms.Remove(thisDorm);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
   }
 }

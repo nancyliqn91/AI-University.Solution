@@ -2,8 +2,9 @@
   Layout = "_Layout";
 }
 
-
-@model AIUniversity.Models.Department
+@model AIUniversity.Models.Department;
+@using AIUniversity.Models;
+@using System.Collections.Generic;
 
 <div class="card">
   <div class="card-header">
@@ -14,6 +15,51 @@
     <h3 class="card-title">Department Description: @Html.DisplayFor(model => model.DepartmentDescription)</h3>
   </div>
 </div>
+
+@if (@Model.Professors.Count == 0)
+{
+  <h3>No professors have been added to this department yet!</h3>
+} 
+else
+{
+  <h4>Professors the department has:</h4>
+  <ul>
+    @foreach (Professor professor in Model.Professors)
+    {
+      <li>@professor.ProfessorLastName, @professor.ProfessorFirstName</li>
+    }
+  </ul>
+}
+
+@if (@Model.Courses.Count == 0)
+{
+  <h3>No courses have been added to this department yet!</h3>
+} 
+else
+{
+  <h4>Courses the department has:</h4>
+  <ul>
+    @foreach (Course course in Model.Courses)
+    {
+      <li>@course.CourseName</li>
+    }
+  </ul>
+}
+
+@if (@Model.Students.Count == 0)
+{
+  <h3>No students have been added to this department yet!</h3>
+} 
+else
+{
+  <h4>Students the department has:</h4>
+  <ul>
+    @foreach (Student student in Model.Students)
+    {
+      <li>@student.StudentLastName, @student.StudentFirstName</li>
+    }
+  </ul>
+}
 
 <p>@Html.ActionLink("Back to Departments", "Index", null, new { @class = "btn btn-secondary mb-2" })</p>
 <p>@Html.ActionLink("Edit Department", "Edit", new { id = Model.DepartmentId }, new { @class = "btn btn-warning mb-2" })</p>

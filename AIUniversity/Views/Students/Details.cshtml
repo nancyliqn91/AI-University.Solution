@@ -1,0 +1,59 @@
+@{
+  Layout = "_Layout";
+}
+
+@using AIUniversity.Models
+@model AIUniversity.Models.Student
+
+<h2>Student Details</h2>
+<hr />
+<h3>@Html.DisplayFor(model => model.StudentLastName), @Html.DisplayFor(model => model.StudentFirstName)<h3>
+<h4>@Html.DisplayFor(model => model.StudentDepartment.DepartmentName)</h4>
+<h4>@Html.DisplayFor(model => model.StudentEmail)</h4>
+<h4>@Html.DisplayFor(model => model.StudentDateOfBirth)</h4>
+@if(@Model.StudentCourses.Count == 0)
+{
+  <p>This student is not currently registered for any courses.</p>
+}
+else
+{
+  <h4>This student is registered for the following courses:</h4>
+  <ul>
+    @foreach(StudentCourse join in Model.StudentCourses)
+    {
+      <li>Tag: @join.Course.CourseName</li>
+      @using (Html.BeginForm("DeleteJoin", "Students"))
+      {
+        @Html.Hidden("joinId", @join.StudentCourseId)
+        <input type="submit" value="Delete"/>
+      }
+    }
+  </ul>
+}
+<hr />
+
+@if(@Model.StudentClubs.Count == 0)
+{
+  <p>This student is not currently in any clubs.</p>
+}
+else
+{
+  <h4>This student is in the following clubs:</h4>
+  <ul>
+    @foreach(StudentClub join in Model.StudentClubs)
+    {
+      <li>Tag: @join.Club.ClubName</li>
+      @using (Html.BeginForm("DeleteJoin", "Students"))
+      {
+        @Html.Hidden("joinId", @join.StudentClubId)
+        <input type="submit" value="Delete"/>
+      }
+    } 
+  </ul>
+}
+
+<p>@Html.ActionLink("Add a Course", "AddCourse", new { id = Model.StudentId })</p>
+<p>@Html.ActionLink("Add a Club", "AddClub", new { id = Model.StudentId })</p>
+<p>@Html.ActionLink("Edit Student", "Edit", new { id = Model.StudentId })</p>
+<p>@Html.ActionLink("Delete Student", "Delete", new { id = Model.StudentId })</p>
+<p>@Html.ActionLink("Back to list", "Index")</p>

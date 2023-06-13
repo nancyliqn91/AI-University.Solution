@@ -1,0 +1,25 @@
+@{
+  Layout = "_Layout";
+}
+
+@model AIUniversity.Models.Club
+
+<h2>Edit</h2>
+
+<h4>Edit this club: @Html.DisplayFor(model => model.ClubName)</h4>
+
+@using (Html.BeginForm())
+{
+
+  @Html.HiddenFor(model => model.ClubName)
+
+  @Html.LabelFor(model => model.ClubName)
+  @Html.EditorFor(model => model.ClubName)
+
+  @Html.LabelFor(model => model.ClubPresident)
+  @Html.EditorFor(model => model.ClubPresident)
+
+  <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p>

@@ -12,16 +12,25 @@
 @using (Html.BeginForm())
 {
 @Html.HiddenFor(model => model.DepartmentId)
+
 <div class = "container">
   <p>Department</p>
   <div class="row">
-    <div class="col-6 col-md-3"><p>Name: @Html.TextBoxFor(model => model.DepartmentName)</p></div>
-    <div class="col-6 col-md-4"><p>Description: @Html.TextBoxFor(model => model.DepartmentDescription)</p></div>
+    <div class="col-6 col-md-2"><p>Name: </p></div>
+    <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.DepartmentName)</div> 
+  </div>
+  <div class="row">
+     <div class="col-6 col-md-2"><p>Description: </p></div>
+     <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.DepartmentDescription)</div> 
+  </div>
+  <div class="row">
+    <div class="col-6 col-md-2"><input type="submit" value="Edit Department"/></div>
   </div>
 </div>
   
+  
      
-  <input type="submit" value="Add Department"/>
+
 }
 <br>
 <p>@Html.ActionLink("Show Departments", "Index")</p>

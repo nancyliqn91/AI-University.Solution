@@ -1,0 +1,51 @@
+@{
+  Layout = "_Layout";
+}
+
+@model AIUniversity.Models.Course
+@using AIUniversity.Models;
+@using System.Collections.Generic;
+
+<div class="card">
+  <div class="card-header">
+    <h2>Course Details</h2>
+  </div>
+  <div class="card-body">
+    <h3 class="card-title">Course Name: @Html.DisplayFor(model => model.CourseName)</h3>
+    <h3 class="card-title">Course Description: @Html.DisplayFor(model => model.CourseDescription)</h3>
+    <h3 class="card-title">Professor: @Html.DisplayFor(model => model.Professor.ProfessorLastName)</h3>
+    <h3 class="card-title">Department: @Html.DisplayFor(model => model.Department.DepartmentName)</h3>
+  </div>
+
+@if(@Model.StudentCourses.Count == 0)
+{
+  <p>This course does not have any students yet!</p>
+}
+else
+{
+  <h4>This course has the following students:</h4>
+  <ul>
+    @foreach(StudentCourse join in Model.StudentCourses)
+    {
+      <li>LastName: @join.Student.StudentLastName, FirstName: @join.Student.StudentFirstName</li>
+
+      @using (Html.BeginForm("DeleteJoin", "Courses"))
+      {
+        @Html.Hidden("joinId", @join.StudentCourseId)
+        <input type="submit" value="Delete"/>
+      }
+      
+    }
+  </ul>
+}
+  
+</div>
+
+<p>@Html.ActionLink("Back to Courses List", "Index", null, new { @class = "btn btn-secondary mb-2" })</p>
+<p>@Html.ActionLink("Edit Course", "Edit", new { id = Model.CourseId }, new { @class = "btn btn-warning mb-2" })</p>
+<p>@Html.ActionLink("Add a student", "AddStudent", new { id = Model.CourseId }, new { @class = "btn btn-warning mb-2" })</p>
+
+<p>@Html.ActionLink("Delete Course", "Delete", new { id = Model.CourseId }, new { @class = "btn btn-danger mb-2" })</p>
+
+
+

@@ -22,7 +22,6 @@ namespace AIUniversity.Controllers
     public DepartmentsController(UserManager<ApplicationUser> userManager, AIUniversityContext db)
     {
       _userManager = userManager;
-
       _db = db;
     }
 
@@ -39,7 +38,7 @@ namespace AIUniversity.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> Create(Department department)
+    public ActionResult Create(Department department)
     {
       if (!ModelState.IsValid)
       {
@@ -55,9 +54,12 @@ namespace AIUniversity.Controllers
 
     public ActionResult Details(int id)
     {
-      //Department department = _db.Departments.ToList();
-      Department thisdepartment = _db.Departments.FirstOrDefault(dep => dep.DepartmentId == id);
-      return View(department);
+      Department thisdepartment = _db.Departments
+                            .Include(department => department.Professors)
+                            .Include(department => department.Courses)
+                            .Include(department => department.Students)                            
+                            .FirstOrDefault(dep => dep.DepartmentId == id);
+                            return View(thisdepartment);
     }
 
     public ActionResult Edit(int id)

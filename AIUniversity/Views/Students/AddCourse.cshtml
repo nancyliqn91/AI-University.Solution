@@ -1,0 +1,22 @@
+@{
+  Layout = "_Layout";
+}
+
+@model AIUniversity.Models.Student
+
+<h2>Add Course</h2>
+
+<h4>Add an course for this student: @Html.DisplayFor(model => model.StudentLastName), @Html.DisplayFor(model => model.StudentFirstName)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.StudentId)
+
+    @Html.Label("Select course")
+    @Html.DropDownList("CourseId")
+
+    <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to Details", "Details", new {id = Model.StudentId})</p>
+<p>@Html.ActionLink("Back to list", "Index")</p>
