@@ -1,23 +1,79 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-
-    <nav class="navbar bg-body-tertiary">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
       <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
           <img src="~/dino.jpg" alt="UI University" width="50" height="60">
         </a>
       </div>
     </nav>
 
-<!-- Events(calender)   Academics(department , major, and professors)    Campus life(dorm introduction and clubs)   Visit (campus information)  About(introduction) .   -->
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="/">AI University</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/Professors">Professors</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/Students">Students</a>
+      </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/Courses">Courses</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/Clubs">Clubs</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/Dorms">Dorms</a>
+      </li>
+    </ul>
+
+    <form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+
+  </div>
+</nav>
+
+<nav class="navbar navbar-expand-sm bg-body-tertiary">
+  <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample11" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse text-center" id="navbarsExample11">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" href="">@Html.ActionLink("Events", "Index", "Events")</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="">@Html.ActionLink("Academics", "Index", "Academics")</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="">@Html.ActionLink("Campus Life", "Index", "Campus")</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="">@Html.ActionLink("Visit", "Index", "Visit")</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="">@Html.ActionLink("About", "Index", "About")</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">AI University</a>
-        </li>
-
         <li class="nav-item">
           <a class="nav-link" href="">@Html.ActionLink("Events", "Index", "Events")</a>
         </li>
@@ -38,31 +94,24 @@
           <a class="nav-link" href="">@Html.ActionLink("About", "Index", "About")</a>
         </li>
 
-        <!-- for register below -->
-        <li class="nav-item dropdown">
+        for register below -->
+        <!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             View
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/Dorms">Dorms</a></li>
             <li><a class="dropdown-item" href="/Professors">Professors</a></li>
-
+            <li><a class="dropdown-item" href="/Students">Students</a></li> 
+            <li><a class="dropdown-item" href="/Courses">Courses</a></li>                       
             <li><a class="dropdown-item" href="/Clubs">Clubs</a></li>
-
-            <li><a class="dropdown-item" href="/Courses">Courses</a></li>
+            <li><a class="dropdown-item" href="/Dorms">Dorms</a></li>
           </ul>
+
         </li>
-
-        <!-- <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
-        </li> -->
       </ul>
-
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
 
     </div>
   </div>
-</nav>
+</nav> -->
+
+

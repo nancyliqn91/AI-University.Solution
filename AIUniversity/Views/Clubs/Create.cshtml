@@ -11,17 +11,28 @@
 
 @using (Html.BeginForm())
 {
-
 <div class = "container">
   <p>Club</p>
   <div class="row">
-    <div class="col-6 col-md-3"><p>Name: @Html.TextBoxFor(model => model.ClubName)</p></div>
-    <div class="col-6 col-md-4"><p>Description: @Html.TextBoxFor(model => model.ClubDescription)</p></div>
-    <div class="col-6 col-md-4"><p>President: @Html.TextBoxFor(model => model.ClubPresident)</p></div>
+    <div class="col-6 col-md-2"><p>Name: </p></div>
+    <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.ClubName)</div> 
+  </div>
+  <div class="row">
+     <div class="col-6 col-md-2"><p>President: </p></div>
+     <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.ClubPresident)</div> 
+  </div>
+  
+  <div class="row">
+    <div class="col-6 col-md-2"><p>Description: </p></div>
+    <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.ClubDescription)</div> 
+  </div>
+  <div class="row">
+    <div class="col-6 col-md-2"><input type="submit" value="Add Club"/></div>
   </div>
 </div>
+
    
-  <input type="submit" value="Add a Club"/>
+
 }
 <br>
 <p>@Html.ActionLink("Show Clubs", "Index")</p>

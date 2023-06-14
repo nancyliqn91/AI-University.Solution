@@ -15,24 +15,29 @@
     <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.ProfessorFirstName)</div> 
   </div>
   <div class="row">
-     <div class="col-6 col-md-2"><p>Last Name: </p></div>
-     <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.ProfessorLastName)</div> 
+    <div class="col-6 col-md-2"><p>Last Name: </p></div>
+    <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.ProfessorLastName)</div> 
   </div>
   <div class="row">
-     <div class="col-6 col-md-2"><p>Email: </p></div>
-     <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.ProfessorEmail)</div> 
+    <div class="col-6 col-md-2"><p>Email: </p></div>
+    <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.ProfessorEmail)</div> 
   </div>
   <div class="row">
-     <div class="col-6 col-md-2"><p>Date of Birth: </p></div>
-     <div class="col-6 col-md-2"> @Html.TextBoxFor(model => model.ProfessorDateOfBirth, new { type = "date"})</div> 
+    <div class="col-6 col-md-2"><p>Date of Birth: </p></div>
+    <div class="col-6 col-md-2"> @Html.TextBoxFor(model => model.ProfessorDateOfBirth, new { type = "date"})</div> 
+  </div>
+ 
+  <div class="row">
+    <div class="col-6 col-md-2"><p>Description: </p></div>
+    <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.ProfessorDescription)
+    </div> 
   </div>
   <div class="row">
-     <div class="col-6 col-md-2"><p>Description: </p></div>
-     <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.ProfessorDescription)</div> 
+    <div class="col-6 col-md-2"><p>Department: </p></div>
+    <div class="col-6 col-md-2">@Html.DropDownList("DepartmentId")</div> 
   </div>
 
-    @Html.LabelFor(model => model.Department)
-    @Html.DropDownList("DepartmentId")
+    
 
   <div class="row">
     <div class="col-6 col-md-2"><input type="submit" value="Add Professor"/></div>

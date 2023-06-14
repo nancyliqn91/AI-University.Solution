@@ -103,7 +103,9 @@ namespace AIUniversity.Controllers
     public ActionResult AddStudent(int id)
     {
       Club thisClub = _db.Clubs.FirstOrDefault(clubs => clubs.ClubId == id);
-      ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "StudentFullName");
+      ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "StudentLastName");
+
+ 
       return View(thisClub);
     }
 

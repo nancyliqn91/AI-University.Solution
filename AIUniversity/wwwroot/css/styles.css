@@ -1,18 +1,17 @@
-/* CORLOR PALETTE IS AS FOLLOWS */
+/* COLOR PALETTE IS AS FOLLOWS */
 /* F5F0BB   LIGHT TAN GREEN (Background Color)
 DBDFAA   LIGHT GREEN
 B3C890   DARKISH GREEN
 73A9AD   BLUEISH GREEN */
 
-
 div#footer {
-	position:fixed;
-	bottom:0px;
-	left:0px;
-	width:100%;
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
 	color: black;
-	background:#B3C890;
-	padding:8px;
+	background: #B3C890;
+	padding: 8px;
 }
 
 body {
@@ -24,19 +23,22 @@ body {
 }
 
 .navbar a {
-  float: left;
-  padding: 12px;
-  color: black;
-  text-decoration: none;
-  font-size: 17px;
-  width: 100%; /* Four equal-width links. If you have two links, use 50%, and 33.33% for three links, etc.. */
-  text-align: center; /* If you want the text to be centered */
+	float: left;
+	padding: 12px;
+	color: black;
+	text-decoration: none;
+	font-size: 17px;
+	width: 100%;
+	/* Four equal-width links. If you have two links, use 50%, and 33.33% for three links, etc.. */
+	text-align: center;
+	/* If you want the text to be centered */
 }
 
-#header {text-align: center;}
+#header {
+	text-align: center;
+}
 
-
-img{
+img {
 	display: block;
 	padding: 15px;
 	margin-left: auto;
@@ -55,6 +57,14 @@ img{
 
 .btn-primary:hover,
 .btn-primary:focus {
-  background-color: #003300;
-  border-color: #003300; 
+	background-color: #003300;
+	border-color: #003300;
+}
+
+.sub-header {
+	margin: 2rem;
+}
+
+.header {
+	margin: 2rem;
 }

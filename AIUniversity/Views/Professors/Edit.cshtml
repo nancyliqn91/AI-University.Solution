@@ -35,9 +35,10 @@
       <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.ProfessorDescription)</div> 
     </div>
 
-  @Html.LabelFor(model => model.Department)
-  @Html.DropDownList("DepartmentId")
-  
+    <div class="row">
+      <div class="col-6 col-md-2"><p>Department: </p></div>
+      <div class="col-6 col-md-2">@Html.DropDownList("DepartmentId")</div> 
+    </div>
   <div class="row">
     <div class="col-6 col-md-2"><input type="submit" value="Add Professor"/></div>
   </div>

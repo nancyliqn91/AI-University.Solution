@@ -24,7 +24,6 @@ namespace AIUniversity.Controllers;
       _db = db;
     }
     
-    [AllowAnonymous]
     public ActionResult Index()
     {
       List<Student> myStudents = _db.Students
@@ -33,7 +32,6 @@ namespace AIUniversity.Controllers;
       return View(myStudents);
     }
 
-    [AllowAnonymous]
     public ActionResult Details(int id)
     {
       Student thisStudent = _db.Students
@@ -63,9 +61,7 @@ namespace AIUniversity.Controllers;
       }
       // for full name
       else
-      {
-         student.StudentFullName = student.StudentFirstName;
-         
+      {         
         _db.Students.Add(student);
         _db.SaveChanges();
         return RedirectToAction("Index");

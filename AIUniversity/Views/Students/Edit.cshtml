@@ -30,13 +30,14 @@
      <div class="col-6 col-md-2"><p>Date of Birth: </p></div>
      <div class="col-6 col-md-2"> @Html.EditorFor(model => model.StudentDateOfBirth, new { type = "date"})</div> 
   </div>
-
-  @Html.LabelFor(model => model.StudentDepartment)
-  @Html.DropDownList("DepartmentId")
-
-  @Html.LabelFor(model => model.StudentDorm)
-  @Html.DropDownList("DormId")
-  
+  <div class="row">
+    <div class="col-6 col-md-2"><p>Department: </p></div>
+    <div class="col-6 col-md-2">@Html.DropDownList("DepartmentId")</div> 
+  </div>
+  <div class="row">
+    <div class="col-6 col-md-2"><p>Dorm: </p></div>
+    <div class="col-6 col-md-2">@Html.DropDownList("DormId")</div> 
+  </div>  
   <div class="row">
     <div class="col-6 col-md-2"><input type="submit" value="Edit Student"/></div>
   </div>

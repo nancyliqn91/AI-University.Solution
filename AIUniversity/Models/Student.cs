@@ -13,7 +13,7 @@ namespace AIUniversity.Models
     public string StudentLastName { get; set; }    
     [Required(ErrorMessage = "Must add birthday!")]
 
-    public string StudentFullName { get; set;}
+    //public string StudentFullName { get; set;}
     public DateTime StudentDateOfBirth { get; set; }
        
     [Required(ErrorMessage = "Must enter student email!")]
@@ -31,3 +31,4 @@ namespace AIUniversity.Models
 
   }
 }
+

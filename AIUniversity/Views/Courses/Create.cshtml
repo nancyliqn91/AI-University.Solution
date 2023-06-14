@@ -5,10 +5,9 @@
 @model AIUniversity.Models.Course
 
 <h4>Add a new Course</h4>
-<hr />
+<hr/>
 
-<p>@Html.ValidationMessageFor(model => model.CourseName, "", new { @class = "text-danger", @style = "font-weight: 600;"
-  })</p>
+<p>@Html.ValidationMessageFor(model => model.CourseName, "", new { @class = "text-danger", @style = "font-weight: 600;"})</p>
 
 @using (Html.BeginForm())
 {
