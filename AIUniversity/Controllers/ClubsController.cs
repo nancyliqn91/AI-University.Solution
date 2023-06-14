@@ -26,7 +26,7 @@ namespace AIUniversity.Controllers
 
       _db = db;
     }
-    
+    [AllowAnonymous]
     public ActionResult Index()
     {
       List<Club> allClubs = _db.Clubs

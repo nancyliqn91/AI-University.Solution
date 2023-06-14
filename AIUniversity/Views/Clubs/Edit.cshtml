@@ -28,11 +28,10 @@
     <div class="col-6 col-md-2">@Html.EditorFor(model => model.ClubDescription)</div> 
   </div>
   <div class="row">
-    <div class="col-6 col-md-2"><input type="submit" value="Save Changes"/></div>
+    <div class="col-6 col-md-2"><input type="submit" value="Save"/></div>
   </div>
 </div>
 
-
 }
 
-<p>@Html.ActionLink("Back to list", "Index")</p>
+<p>@Html.ActionLink("Back to list", "Index", null, null, new { @class = "btn btn-secondary mb-2" })</p>

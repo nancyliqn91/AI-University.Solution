@@ -15,8 +15,8 @@
     @Html.Label("Select a student")
     @Html.DropDownList("StudentId")
 
-    <input type="submit" value="Save" />
+    <input type="submit" value="Save" class = "btn btn-primary mb-2"/>
 }
 
-<p>@Html.ActionLink("Back to list", "Index")</p>
+<p>@Html.ActionLink("Back to list", "Index", null, null, new { @class = "btn btn-secondary mb-2" })</p>
 

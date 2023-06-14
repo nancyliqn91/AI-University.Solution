@@ -15,9 +15,9 @@
   <ul>
     @foreach(Dorm dorm in Model)
     {
-      <li>@Html.ActionLink($"{dorm.DormName}", "Details", new { id = dorm.DormId })</li>
+      <li>@Html.ActionLink($"{dorm.DormName}", "Details", new { id = dorm.DormId },  new { @class = "btn btn-primary mb-2" })</li>
     }
   </ul>
 </div>
 
-<p>@Html.ActionLink("Add New Dorm", "Create")</p>
+<p>@Html.ActionLink("Add New Dorm", "Create", null, null, new { @class = "btn btn-secondary mb-2" })</p>

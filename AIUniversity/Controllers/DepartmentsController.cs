@@ -52,6 +52,7 @@ namespace AIUniversity.Controllers
       }
     }
 
+    [AllowAnonymous]
     public ActionResult Details(int id)
     {
       Department thisdepartment = _db.Departments

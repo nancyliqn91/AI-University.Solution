@@ -119,11 +119,17 @@ namespace AIUniversity.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("DaysOfTheWeek")
+                        .HasColumnType("longtext");
+
                     b.Property<int>("DepartmentId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProfessorId")
                         .HasColumnType("int");
+
+                    b.Property<string>("TimeOfClass")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("UserId")
                         .HasColumnType("varchar(255)");

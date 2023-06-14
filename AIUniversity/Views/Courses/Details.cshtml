@@ -13,38 +13,41 @@
   <div class="card-body">
     <h3 class="card-title">Course Name: @Html.DisplayFor(model => model.CourseName)</h3>
     <h3 class="card-title">Course Description: @Html.DisplayFor(model => model.CourseDescription)</h3>
-    <h3 class="card-title">Professor: @Html.DisplayFor(model => model.Professor.ProfessorLastName)</h3>
+    <h3 class="card-title">Time: @Html.DisplayFor(model => model.TimeOfClass)</h3>
+    <h3 class="card-title">Days of The Week: @Html.DisplayFor(model => model.DaysOfTheWeek)</h3>
+    <h3 class="card-title">Professor: @Html.DisplayFor(model => model.Professor.ProfessorLastName), @Html.DisplayFor(model => model.Professor.ProfessorFirstName)</h3>
     <h3 class="card-title">Department: @Html.DisplayFor(model => model.Department.DepartmentName)</h3>
   </div>
-
-@if(@Model.StudentCourses.Count == 0)
-{
-  <p>This course does not have any students yet!</p>
-}
-else
-{
-  <h4>This course has the following students:</h4>
-  <ul>
-    @foreach(StudentCourse join in Model.StudentCourses)
+  
+  @if(User.Identity.IsAuthenticated)
+  {
+    @if(@Model.StudentCourses.Count == 0)
     {
-      <li>LastName: @join.Student.StudentLastName, FirstName: @join.Student.StudentFirstName</li>
-
-      @using (Html.BeginForm("DeleteJoin", "Courses"))
-      {
-        @Html.Hidden("joinId", @join.StudentCourseId)
-        <input type="submit" value="Delete"/>
-      }
-      
+      <p>This course does not have any students yet!</p>
     }
-  </ul>
-}
+    else
+    {
+      <h4>This course has the following students:</h4>
+      <ul>
+        @foreach(StudentCourse join in Model.StudentCourses)
+        {
+          <li>@join.Student.StudentLastName, @join.Student.StudentFirstName</li>
+
+          @using (Html.BeginForm("DeleteJoin", "Courses"))
+          {
+            @Html.Hidden("joinId", @join.StudentCourseId)
+            <input type="submit" value="Delete" class = "btn btn-danger mb-2"/>
+          } 
+        }
+      </ul>
+    } 
+  }
   
 </div>
 
-<p>@Html.ActionLink("Back to Courses List", "Index", null, new { @class = "btn btn-secondary mb-2" })</p>
+<p>@Html.ActionLink("Back to Courses List", "Index", null, null, new { @class = "btn btn-secondary mb-2" })</p>
 <p>@Html.ActionLink("Edit Course", "Edit", new { id = Model.CourseId }, new { @class = "btn btn-warning mb-2" })</p>
 <p>@Html.ActionLink("Add a student", "AddStudent", new { id = Model.CourseId }, new { @class = "btn btn-warning mb-2" })</p>
-
 <p>@Html.ActionLink("Delete Course", "Delete", new { id = Model.CourseId }, new { @class = "btn btn-danger mb-2" })</p>
 
 

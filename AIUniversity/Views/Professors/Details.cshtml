@@ -24,8 +24,8 @@ else
   }
   </ul>
 }
+<p>@Html.ActionLink("Back to list", "Index", null, null, new { @class = "btn btn-secondary mb-2" })</p>
+<p>@Html.ActionLink("Edit Professor", "Edit", new { id = Model.ProfessorId }, new { @class = "btn btn-warning mb-2" })</p>
+<p>@Html.ActionLink("Add New Course", "Create", "Courses", null, new { @class = "btn btn-warning mb-2" })</p>
+<p>@Html.ActionLink("Delete Professor", "Delete", new { id = Model.ProfessorId }, new { @class = "btn btn-danger mb-2" })</p>
 
-<p>@Html.ActionLink("Edit Professor", "Edit", new { id = Model.ProfessorId })</p>
-<p>@Html.ActionLink("Delete Professor", "Delete", new { id = Model.ProfessorId })</p>
-
-<p>@Html.ActionLink("Back to list", "Index")</p>

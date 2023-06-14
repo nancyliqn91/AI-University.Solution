@@ -90,8 +90,10 @@ namespace AIUniversity.Controllers
       return RedirectToAction("Index");
     }
 
-
-
-    
+    public IActionResult AccessDenied()
+    {
+      return View();
+    }
+        
   }
 }

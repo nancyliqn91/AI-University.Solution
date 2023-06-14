@@ -6,33 +6,43 @@
 @model AIUniversity.Models.Club;
 @using System.Collections.Generic;
 
-<h2>Club Details</h2>
-<hr />
-<h3>Club Name: @Html.DisplayFor(model => model.ClubName)</h3>
-<h3>Club President: @Html.DisplayFor(model => model.ClubPresident)</h3>
+<div class="card">
+  <div class="card-header">
+    <h2>Club Details</h2>
+  </div>
+  <div class="card-body">
+    <h3 class="card-title">Course Name: @Html.DisplayFor(model => model.ClubName)</h3>
+    <h3 class="card-title">Course Description: @Html.DisplayFor(model => model.ClubDescription)</h3>
+    <h3 class="card-title">President: @Html.DisplayFor(model => model.ClubPresident)</h3>
+  </div>
 
-@if(@Model.StudentClubs.Count == 0)
-{
-  <p>No students have been added to this club yet.</p>
-}
-else
-{
-  <h4>Students the club has:</h4>
-  <ul>
-  @foreach(StudentClub join in Model.StudentClubs)
+  @if(User.Identity.IsAuthenticated)
   {
-    <li>Student: @join.Student.StudentFirstName, @join.Student.StudentLastName</li>
-
-    @using (Html.BeginForm("DeleteJoin", "Clubs"))
+   @if(@Model.StudentClubs.Count == 0)
     {
-      @Html.Hidden("joinId", @join.StudentClubId)
-      <input type="submit" value="Delete"/>
+      <p>This club does not have any students yet!</p>
     }
-  }
-  </ul>
-}
+    else
+    {
+      <h4>This club has the following students:</h4>
+      <ul>
+        @foreach(StudentClub join in Model.StudentClubs)
+        {
+          <li>@join.Student.StudentLastName, @join.Student.StudentFirstName</li>
 
-<p>@Html.ActionLink("Edit Club", "Edit", new { id = Model.ClubId })</p>
-<p>@Html.ActionLink("Delete Club", "Delete", new { id = Model.ClubId })</p>
-<p>@Html.ActionLink("Add a student", "AddStudent", new { id = Model.ClubId })</p>
-<p>@Html.ActionLink("Back to list", "Index")</p>
+          @using (Html.BeginForm("DeleteJoin", "Clubs"))
+          {
+            @Html.Hidden("joinId", @join.StudentClubId)
+            <input type="submit" value="Delete" class = "btn btn-danger mb-2"/>
+          } 
+        }
+      </ul>
+    } 
+  }
+   
+</div>
+
+<p>@Html.ActionLink("Back to list", "Index", null, null, new { @class = "btn btn-secondary mb-2" })</p>
+<p>@Html.ActionLink("Edit Club", "Edit", new { id = Model.ClubId }, new { @class = "btn btn-warning mb-2" })</p>
+<p>@Html.ActionLink("Add a student", "AddStudent", new { id = Model.ClubId }, new { @class = "btn btn-warning mb-2" })</p>
+<p>@Html.ActionLink("Delete Club", "Delete", new { id = Model.ClubId }, new { @class = "btn btn-danger mb-2" })</p>

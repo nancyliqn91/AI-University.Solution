@@ -14,8 +14,8 @@
 <ul>
   @foreach(Club club in Model)
   {
-    <li>@Html.ActionLink($"{club.ClubName}", "Details", new { id = club.ClubId })</li>
+    <li>@Html.ActionLink($"{club.ClubName}", "Details", new { id = club.ClubId }, new { @class = "btn btn-primary mb-2" })</li>
   }
 </ul>
 
-<p>@Html.ActionLink("Add new club", "Create")</p>
+<p>@Html.ActionLink("Add new club", "Create", null, null, new { @class = "btn btn-secondary mb-2" })</p>

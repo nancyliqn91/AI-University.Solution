@@ -14,8 +14,8 @@
 <ul>
   @foreach(Professor professor in Model)
   {
-    <li>@Html.ActionLink($"{professor.ProfessorFirstName}", "Details", new { id = professor.ProfessorId }) | @professor.Department.DepartmentName</li>
+    <li>@Html.ActionLink($"{professor.ProfessorLastName}, {professor.ProfessorFirstName}", "Details", new { id = professor.ProfessorId }, new { @class = "btn btn-primary mb-2" }) </li>
   }
 </ul>
 
-<p>@Html.ActionLink("Add new professor", "Create")</p>
+<p>@Html.ActionLink("Add new professor", "Create", null, null, new { @class = "btn btn-secondary mb-2" })</p>

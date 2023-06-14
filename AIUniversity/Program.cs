@@ -25,7 +25,8 @@ namespace AIUniversity
 
       builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<AIUniversityContext>()
-                .AddDefaultTokenProviders();                
+                .AddDefaultTokenProviders()
+                .AddRoles<IdentityRole>();                
 
 // Password settings, start
 builder.Services.Configure<IdentityOptions>(options =>

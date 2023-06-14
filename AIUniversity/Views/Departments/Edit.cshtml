@@ -24,13 +24,10 @@
      <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.DepartmentDescription)</div> 
   </div>
   <div class="row">
-    <div class="col-6 col-md-2"><input type="submit" value="Edit Department"/></div>
+    <div class="col-6 col-md-2"><input type="submit" value="Save" class = "btn btn-primary mb-2"/></div>
   </div>
 </div>
-  
-  
-     
 
 }
 <br>
-<p>@Html.ActionLink("Show Departments", "Index")</p>
+<p>@Html.ActionLink("Show Departments", "Index", null, null, new { @class = "btn btn-secondary mb-2" })</p>

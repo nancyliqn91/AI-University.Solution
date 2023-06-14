@@ -12,9 +12,9 @@
     </p>
     @using (Html.BeginForm())
     {
-      <button type="submit" class="btn btn-danger">Delete</button>
+      <button type="submit" class="btn btn-danger mb-2">Delete</button>
     }
   </div>
 </div>
 
-@Html.ActionLink("Back to Department List", "Index", null, new { @class = "btn btn-primary" })
+@Html.ActionLink("Back to Department List", "Index", null, null, new { @class = "btn btn-secondary" })

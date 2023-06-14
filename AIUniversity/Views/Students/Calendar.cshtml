@@ -1,0 +1,104 @@
+@{
+  Layout = "_Layout";
+}
+
+@using AIUniversity.Models
+@model AIUniversity.Models.Student
+
+
+<h2>Student Details</h2>
+<hr />
+<h3>Name: @Html.DisplayFor(model => model.StudentLastName), @Html.DisplayFor(model => model.StudentFirstName)<h3>
+<h4>Email: @Html.DisplayFor(model => model.StudentEmail)</h4>
+<hr />
+<div class="container">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col"><strong>Sunday</strong></div>
+    <div class="col"><strong>Monday</strong></div>
+    <div class="col"><strong>Tueseday</strong></div>
+    <div class="col"><strong>Wednesday</strong></div>
+    <div class="col"><strong>Thursday</strong></div>
+    <div class="col"><strong>Friday</strong></div>
+    <div class="col"><strong>Saturday</strong></div>
+  </div>
+
+  @{double timeTracker = 8;}
+  @{double extraTime;}
+  @for(int i =1; i <=6; i++)
+  {
+    extraTime = timeTracker+1.5;
+    <br>
+    <div class="row">
+      <div class="col">@timeTracker -> @extraTime </div>
+      <div class="col">
+        @foreach(StudentCourse join in Model.StudentCourses)
+        {  
+          @if(@join.Course.DaysOfTheWeek == "Sunday" && @join.Course.TimeOfClass == i.ToString())
+          {
+            @join.Course.CourseName
+          }
+        }
+      </div>
+      <div class="col">
+        @foreach(StudentCourse join in Model.StudentCourses)
+        {  
+          @if(@join.Course.DaysOfTheWeek == "Monday" && @join.Course.TimeOfClass == i.ToString())
+          {
+            @join.Course.CourseName
+          }
+        }
+      </div>
+      <div class="col">
+        @foreach(StudentCourse join in Model.StudentCourses)
+        {  
+          @if(@join.Course.DaysOfTheWeek == "Tuesday" && @join.Course.TimeOfClass == i.ToString())
+          {
+            @join.Course.CourseName
+          }
+        }
+      </div>
+      <div class="col">
+        @foreach(StudentCourse join in Model.StudentCourses)
+        {  
+          @if(@join.Course.DaysOfTheWeek == "Wednesday" && @join.Course.TimeOfClass == i.ToString())
+          {
+            @join.Course.CourseName
+          }
+        }
+      </div>
+      <div class="col">
+        @foreach(StudentCourse join in Model.StudentCourses)
+        {  
+          @if(@join.Course.DaysOfTheWeek == "Thursday" && @join.Course.TimeOfClass == i.ToString())
+          {
+            @join.Course.CourseName
+          }
+        }
+      </div>
+      <div class="col">
+        @foreach(StudentCourse join in Model.StudentCourses)
+        {  
+          @if(@join.Course.DaysOfTheWeek == "Friday" && @join.Course.TimeOfClass == i.ToString())
+          {
+            @join.Course.CourseName
+          }
+        }
+      </div>
+      <div class="col">
+        @foreach(StudentCourse join in Model.StudentCourses)
+        {  
+          @if(@join.Course.DaysOfTheWeek == "Saturday" && @join.Course.TimeOfClass == i.ToString())
+          {
+            @join.Course.CourseName
+          }
+        }
+      </div>
+  </div>
+  timeTracker += 1.5;
+  }
+</div>
+
+
+
+<p>@Html.ActionLink("Back to list", "Index", null, null, new { @class = "btn btn-secondary mb-2" })</p>

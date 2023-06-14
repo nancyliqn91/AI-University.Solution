@@ -22,8 +22,8 @@
   @Html.LabelFor(m => m.Password)
   @Html.EditorFor(m => m.Password)
 
-  <input type="submit" value="Log in" />
+  <input type="submit" value="Log in" class = "btn btn-primary mb-2"/>
 }
 
-<p>@Html.ActionLink("Register for an account", "Register")</p>
-<p>@Html.ActionLink("Back to accounts page", "Index")</p>
+<p>@Html.ActionLink("Register for an account", "Register", null, null, new { @class = "btn btn-secondary mb-2" })</p>
+<p>@Html.ActionLink("Back to accounts page", "Index", null, null, new { @class = "btn btn-secondary mb-2" })</p>

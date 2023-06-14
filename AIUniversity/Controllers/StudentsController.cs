@@ -35,6 +35,7 @@ namespace AIUniversity.Controllers;
     public ActionResult Details(int id)
     {
       Student thisStudent = _db.Students
+          .Include(student => student.StudentDepartment)
           .Include(student => student.StudentClubs)
           .ThenInclude(join => join.Club)
           .Include(student => student.StudentCourses)
@@ -59,7 +60,6 @@ namespace AIUniversity.Controllers;
         ViewBag.DormId = new SelectList(_db.Dorms, "DormId", "DormName");
         return View(student);
       }
-      // for full name
       else
       {         
         _db.Students.Add(student);
@@ -132,7 +132,7 @@ namespace AIUniversity.Controllers;
     public ActionResult Delete(int id)
     {
       Student thisStudent = _db.Students.FirstOrDefault(students => students.StudentId == id);
-      return RedirectToAction("Index");
+      return View(thisStudent);
     }
 
     [HttpPost, ActionName("Delete")]
@@ -147,12 +147,39 @@ namespace AIUniversity.Controllers;
     }
 
     [HttpPost]
-    public ActionResult DeleteJoin(int joinId)
+    public ActionResult DeleteCourseJoin(int joinId)
     {
       StudentCourse joinEntry = _db.StudentCourses.FirstOrDefault(entry => entry.StudentCourseId == joinId);
       Student thisStudent = _db.Students.FirstOrDefault(entry => entry.StudentId == joinEntry.StudentId);
       _db.StudentCourses.Remove(joinEntry);
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", new {id = thisStudent.StudentId});
+    }
+
+    [HttpPost]
+    public ActionResult DeleteClubJoin(int joinId)
+    {
+      StudentClub joinEntry = _db.StudentClubs.FirstOrDefault(entry => entry.StudentClubId == joinId);
+      Student thisStudent = _db.Students.FirstOrDefault(entry => entry.StudentId == joinEntry.StudentId);
+      _db.StudentClubs.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Details", new {id = thisStudent.StudentId});
+    }
+
+    public ActionResult Calendar(int id)
+    {
+      Auxiliary aux = new Auxiliary();
+
+      ViewBag.TimeOfClass = aux.getTimeOfClass().ToList();
+
+      Student thisStudent = _db.Students
+          .Include(student => student.StudentDepartment)
+          .Include(student => student.StudentClubs)
+          .ThenInclude(join => join.Club)
+          .Include(student => student.StudentCourses)
+          .ThenInclude(join => join.Course)
+          .FirstOrDefault(student => student.StudentId == id);
+      return View(thisStudent);
     }
 }
+

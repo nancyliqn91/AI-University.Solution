@@ -18,16 +18,25 @@ body {
 	background-color: #F5F0BB;
 }
 
+/* .center {
+	float: right;
+	width: 70%;
+} */
+
 .navbar {
 	background-color: #73A9AD;
+}
+
+.navbarbg-top {
+	background-color: #003300;
 }
 
 .navbar a {
 	float: left;
 	padding: 12px;
-	color: black;
+	color: rgb(255, 255, 255);
 	text-decoration: none;
-	font-size: 17px;
+	font-size: 24px;
 	width: 100%;
 	/* Four equal-width links. If you have two links, use 50%, and 33.33% for three links, etc.. */
 	text-align: center;
@@ -67,4 +76,23 @@ img {
 
 .header {
 	margin: 2rem;
+}
+
+a.white-text {
+	color: white;
+}
+
+.active {
+	color: lightgreen;
+}
+
+/* ACADEMICS PAGE STYLES */
+
+.academics-banner {
+	margin-top: 4rem;
+	margin-bottom: 5rem;
+}
+
+.academic-stats {
+	margin-bottom: 7rem;
 }

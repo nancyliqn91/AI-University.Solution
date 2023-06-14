@@ -7,10 +7,10 @@
 
 <h2>Student Details</h2>
 <hr />
-<h3>@Html.DisplayFor(model => model.StudentLastName), @Html.DisplayFor(model => model.StudentFirstName)<h3>
-<h4>@Html.DisplayFor(model => model.StudentDepartment.DepartmentName)</h4>
-<h4>@Html.DisplayFor(model => model.StudentEmail)</h4>
-<h4>@Html.DisplayFor(model => model.StudentDateOfBirth)</h4>
+<h3>Name: @Html.DisplayFor(model => model.StudentLastName), @Html.DisplayFor(model => model.StudentFirstName)<h3>
+<h4>Department: @Html.DisplayFor(model => model.StudentDepartment.DepartmentName)</h4>
+<h4>Email: @Html.DisplayFor(model => model.StudentEmail)</h4>
+<h4>Date of Birth: @Html.DisplayFor(model => model.StudentDateOfBirth)</h4>
 @if(@Model.StudentCourses.Count == 0)
 {
   <p>This student is not currently registered for any courses.</p>
@@ -22,10 +22,10 @@ else
     @foreach(StudentCourse join in Model.StudentCourses)
     {
       <li>Tag: @join.Course.CourseName</li>
-      @using (Html.BeginForm("DeleteJoin", "Students"))
+      @using (Html.BeginForm("DeleteCourseJoin", "Students"))
       {
         @Html.Hidden("joinId", @join.StudentCourseId)
-        <input type="submit" value="Delete"/>
+        <input type="submit" value="Delete" class = "btn btn-danger mb-2"/>
       }
     }
   </ul>
@@ -43,17 +43,18 @@ else
     @foreach(StudentClub join in Model.StudentClubs)
     {
       <li>Tag: @join.Club.ClubName</li>
-      @using (Html.BeginForm("DeleteJoin", "Students"))
+      @using (Html.BeginForm("DeleteClubJoin", "Students"))
       {
         @Html.Hidden("joinId", @join.StudentClubId)
-        <input type="submit" value="Delete"/>
+        <input type="submit" value="Delete" class = "btn btn-danger mb-2"/>
       }
     } 
   </ul>
 }
 
-<p>@Html.ActionLink("Add a Course", "AddCourse", new { id = Model.StudentId })</p>
-<p>@Html.ActionLink("Add a Club", "AddClub", new { id = Model.StudentId })</p>
-<p>@Html.ActionLink("Edit Student", "Edit", new { id = Model.StudentId })</p>
-<p>@Html.ActionLink("Delete Student", "Delete", new { id = Model.StudentId })</p>
-<p>@Html.ActionLink("Back to list", "Index")</p>
+<p>@Html.ActionLink("Back to list", "Index", null, null, new { @class = "btn btn-secondary mb-2" })</p>
+<p>@Html.ActionLink("Add a Course", "AddCourse", new { id = Model.StudentId }, new { @class = "btn btn-secondary mb-2" })</p>
+<p>@Html.ActionLink("Add a Club", "AddClub", new { id = Model.StudentId },  new { @class = "btn btn-secondary mb-2" })</p>
+<p>@Html.ActionLink("Student Calendar", "Calendar", new { id = Model.StudentId },  new { @class = "btn btn-secondary mb-2" })</p>
+<p>@Html.ActionLink("Edit Student", "Edit", new { id = Model.StudentId }, new { @class = "btn btn-warning mb-2" })</p>
+<p>@Html.ActionLink("Delete Student", "Delete", new { id = Model.StudentId }, new { @class = "btn btn-danger mb-2" })</p>

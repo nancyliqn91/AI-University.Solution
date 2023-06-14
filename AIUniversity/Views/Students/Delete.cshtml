@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@model AIUniversity.Models.Student
+
+<div class="card border-danger mb-3">
+  <div class="card-header bg-danger text-white">Delete Student</div>
+  <div class="card-body">
+    <h5 class="card-title">Are you sure you want to delete: <em>@Html.DisplayFor(model => model.StudentLastName), @Html.DisplayFor(model => model.StudentFirstName)</em> ?</h5>
+    <p class="card-text">
+    </p>
+    @using (Html.BeginForm())
+    {
+      <button type="submit" class = "btn btn-danger mb-2">Delete</button>
+    }
+  </div>
+</div>
+@Html.ActionLink("Back to List", "Index", null, null, new { @class = "btn btn-secondary mb-2" })

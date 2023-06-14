@@ -1,6 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 
+
+
 namespace AIUniversity.Models
 {
   
@@ -13,13 +15,18 @@ namespace AIUniversity.Models
     [Required(ErrorMessage = "The Course's description can't be empty!")]
     public string CourseDescription { get; set;}
 
+    public string DaysOfTheWeek{get;set;}
+    public string TimeOfClass{get;set;}
+
     public int DepartmentId { get; set; }
     public Department Department { get; set; }
     public int ProfessorId { get; set; }
     public Professor Professor { get; set; } 
 
     public List<StudentCourse> StudentCourses { get; set; }
-    
+
     public ApplicationUser User { get; set; }
+
+
   }
 }

@@ -38,22 +38,26 @@ namespace AIUniversity.Controllers
       return View(allCourses);
     }
 
-    public async Task<ActionResult> MyCourses()
-    {
-      string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
+    // public async Task<ActionResult> MyCourses()
+    // {
+    //   string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+    //   ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
 
-      List<Course> userCourses = _db.Courses
-      .Where(entry => entry.User.Id == currentUser.Id)
-      .OrderBy(course => course.CourseName).ToList();
-      return View(userCourses);
-    }
+    //   List<Course> userCourses = _db.Courses
+    //   .Where(entry => entry.User.Id == currentUser.Id)
+    //   .OrderBy(course => course.CourseName).ToList();
+    //   return View(userCourses);
+    // }
 
     public ActionResult Create()
     {
       // STORE DEPARTMENTS IN VIEWBAG
       ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "DepartmentName");
       ViewBag.ProfessorId = new SelectList(_db.Professors, "ProfessorId", "ProfessorLastName");
+      
+      Auxiliary aux = new Auxiliary();
+      ViewBag.TimeOfClass = aux.getTimeOfClass();
+      ViewBag.DaysOfTheWeek = aux.getDaysOfTheWeek();
       return View();
     }
 
@@ -64,6 +68,8 @@ namespace AIUniversity.Controllers
       {
         ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "DepartmentName");
         ViewBag.ProfessorId = new SelectList(_db.Professors, "ProfessorId", "ProfessorLastName");
+
+
         return View(course);
       }
       else
@@ -96,6 +102,10 @@ namespace AIUniversity.Controllers
       ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "DepartmentName");
       ViewBag.ProfessorId = new SelectList(_db.Professors, "ProfessorId", "ProfessorLastName");
 
+      Auxiliary aux = new Auxiliary();
+      ViewBag.TimeOfClass = aux.getTimeOfClass();
+      ViewBag.DaysOfTheWeek = aux.getDaysOfTheWeek();
+      
       Course thisCourse = _db.Courses.FirstOrDefault(course => course.CourseId == id);
       // if (thisCourse.User == currentUser)
       // {
@@ -116,20 +126,13 @@ namespace AIUniversity.Controllers
       return RedirectToAction("Index");
     }
 
-    public async Task<ActionResult> Delete(int id)
+    public ActionResult Delete(int id)
     {
-      string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
+      // string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      // ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
 
       Course thisCourse = _db.Courses.FirstOrDefault(course => course.CourseId == id);
-      if (thisCourse.User == currentUser)
-      {
-        return View(thisCourse);
-      }
-      else
-      {
-        return RedirectToAction("Index");
-      }
+      return View(thisCourse);
 
     }
 
@@ -142,10 +145,10 @@ namespace AIUniversity.Controllers
       return RedirectToAction("Index");
     }
 
-    public async Task<ActionResult> AddStudent(int id)
+    public ActionResult AddStudent(int id)
     {
-      string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
+      // string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      // ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
 
       List<Student> userStudents = _db.Students
                                 // .Where(entry => entry.User.Id == currentUser.Id)
@@ -176,23 +179,18 @@ namespace AIUniversity.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> DeleteJoin(int joinId)
+    public ActionResult DeleteJoin(int joinId)
     {
-      string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
+      // string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      // ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
 
       StudentCourse joinEntry = _db.StudentCourses.FirstOrDefault(entry => entry.StudentCourseId == joinId);
-      Course thisCourse = _db.Courses.FirstOrDefault(entry => entry.CourseId == joinEntry.CourseId);
-      if (thisCourse.User == currentUser)
-      {
+      // Course thisCourse = _db.Courses.FirstOrDefault(entry => entry.CourseId == joinEntry.CourseId);
+      
         _db.StudentCourses.Remove(joinEntry);
         _db.SaveChanges();
         return RedirectToAction("Index");
-      }
-      else
-      {
-        return RedirectToAction("Index", "Home");
-      }
+      
     }
 
   }
