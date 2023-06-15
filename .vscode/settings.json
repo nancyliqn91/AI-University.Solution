@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/f1326e5e-6d1d-4bc1-9cb9-ad792772abca/resourceGroups/AIUniversity-rg/providers/Microsoft.Web/sites/aiuniversity",
+  "appService.deploySubpath": "AIUniversity\\bin\\Release\\net6.0\\publish"
+}
