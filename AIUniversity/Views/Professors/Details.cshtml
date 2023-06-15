@@ -5,10 +5,16 @@
 @using AIUniversity.Models
 @model AIUniversity.Models.Professor
 
-<h2>Professor Details</h2>
-<hr />
-<h3>Professor First Name: @Html.DisplayFor(model => model.ProfessorFirstName), ProfessorLastName: @Html.DisplayFor(model => model.ProfessorLastName)</h3>
-<h3>@Html.DisplayNameFor(model => model.Department): @Html.DisplayFor(model => model.Department.DepartmentName)<h3>
+<div class="card">
+  <div class="card-header">
+    <h2>Professor Details</h2>
+  </div>
+
+  <div class="card-body">
+    <h3 class="card-title">Professor First Name: @Html.DisplayFor(model => model.ProfessorFirstName), ProfessorLastName: @Html.DisplayFor(model => model.ProfessorLastName)</h3>
+    <h4 class="card-title">@Html.DisplayNameFor(model => model.Department): @Html.DisplayFor(model => model.Department.DepartmentName)</h4>
+  </div>
+</div>
 
 @if(@Model.Courses.Count == 0)
 {

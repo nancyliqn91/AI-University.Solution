@@ -9,44 +9,40 @@
 <hr/>
 
 <p>@Html.ValidationMessageFor(model => model.CourseName, "", new { @class = "text-danger", @style = "font-weight: 600;"})</p>
-
-@using (Html.BeginForm())
-{
-
 <div class = "container">
-  <p>Course</p>
-  <div class="row">
-    <div class="col-6 col-md-2"><p>Name: </p></div>
-    <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.CourseName)</div> 
-  </div>
-  <div class="row">
-     <div class="col-6 col-md-2"><p>Description: </p></div>
-     <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.CourseDescription)</div> 
-  </div>
-  <div class="row">
-    <div class="col-6 col-md-2"><p>Professor: </p></div>
-    <div class="col-6 col-md-2">@Html.DropDownList("ProfessorId", (SelectList)ViewBag.ProfessorId, "Select a professor")
-  </div> 
-  <div class="row">
-     <div class="col-6 col-md-2"><p>Department: </p></div>
-     <div class="col-6 col-md-2"> @Html.DropDownList("DepartmentId", (SelectList)ViewBag.DepartmentId, "Select a department")</div> 
-  </div> 
-  <div class="row">
-     <div class="col-6 col-md-2"><p>Day: </p></div>
-     <div class="col-6 col-md-2"> @Html.DropDownList("DaysOfTheWeek",(IEnumerable<SelectListItem>)ViewBag.DaysOfTheWeek)</div> 
-  </div> 
-  <div class="row">
-     <div class="col-6 col-md-2"><p>Time: </p></div>
-     <div class="col-6 col-md-2"> @Html.DropDownList("TimeOfClass",(IEnumerable<SelectListItem>)ViewBag.TimeOfClass)</div> 
-  </div> 
+  @using (Html.BeginForm())
+  {
+    <p>Course</p>
+    <div class="row">
+      <div class="col-6 col-md-2"><p>Name: </p></div>
+      <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.CourseName)</div> 
+    </div>
+    <div class="row">
+      <div class="col-6 col-md-2"><p>Description: </p></div>
+      <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.CourseDescription)</div> 
+    </div>
+    <div class="row">
+      <div class="col-6 col-md-2"><p>Professor: </p></div>
+      <div class="col-6 col-md-2">@Html.DropDownList("ProfessorId", (SelectList)ViewBag.ProfessorId, "Select a professor")
+    </div> 
+    <div class="row">
+      <div class="col-6 col-md-2"><p>Department: </p></div>
+      <div class="col-6 col-md-2"> @Html.DropDownList("DepartmentId", (SelectList)ViewBag.DepartmentId, "Select a department")</div> 
+    </div> 
+    <div class="row">
+      <div class="col-6 col-md-2"><p>Day: </p></div>
+      <div class="col-6 col-md-2"> @Html.DropDownList("DaysOfTheWeek",(IEnumerable<SelectListItem>)ViewBag.DaysOfTheWeek)</div> 
+    </div> 
+    <div class="row">
+      <div class="col-6 col-md-2"><p>Time: </p></div>
+      <div class="col-6 col-md-2"> @Html.DropDownList("TimeOfClass",(IEnumerable<SelectListItem>)ViewBag.TimeOfClass)</div> 
+    </div> 
 
- 
-  </div>
-  <div class="row">
-    <div class="col-6 col-md-2"><input type="submit" value="Add Course" class = "btn btn-primary mb-2"/></div>
-  </div>
+    </div>
+    <div class="row">
+      <div class="col-6 col-md-2"><input type="submit" value="Add Course" class = "btn btn-primary mb-2"/></div>
+    </div>
+  }
+  <br>
+  <p>@Html.ActionLink("Show Courses", "Index", null, null, new { @class = "btn btn-secondary mb-2" })</p>
 </div>
-
-}
-<br>
-<p>@Html.ActionLink("Show Courses", "Index", null, null, new { @class = "btn btn-secondary mb-2" })</p>

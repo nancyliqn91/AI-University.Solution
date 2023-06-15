@@ -34,15 +34,28 @@
       <li class="nav-item">
         <a class="nav-link" href="/Departments">Departments</a>
       </li>
-      <li class="nav-item">
+      @* <li class="nav-item">
         <a class="nav-link" href="/Account">Account</a>
-      </li>
-    </ul>
+      </li> *@
+    
+      @if (User.Identity.IsAuthenticated)
+      {
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/Account">@User.Identity.Name</a>
+        </li>
 
-    <form class="d-flex" role="search">
+      }
+      else
+      {
+        <li class="nav-item">
+          <a class="nav-item" aria-current="page" href="/Account/Login">Log in</a>
+        </li>
+      }
+      </ul>
+    <!-- <form class="d-flex" role="search">
       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
+    </form> -->
 
   </div>
 </nav>

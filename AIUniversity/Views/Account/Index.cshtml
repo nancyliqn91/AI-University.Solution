@@ -2,11 +2,13 @@
   Layout = "_Layout";
 }
 
-<h2>Authentication with Identity</h2>
-<hr />
 
 @if (User.Identity.IsAuthenticated)
 {
+
+  <h2>Are you sure you want to moo?</h2>
+  <hr />
+
   <p>Hello @User.Identity.Name!</p>
 
   @using (Html.BeginForm("LogOff", "Account"))
@@ -16,7 +18,9 @@
   
 }
 else
-{
+{    
+  <h2>moo?</h2>
+  <hr />
   <p>@Html.ActionLink("Register", "Register", null, null, new { @class = "btn btn-secondary mb-2" })</p>
   <p>@Html.ActionLink("Log in", "Login", null, null, new { @class = "btn btn-secondary mb-2" })</p>
 }

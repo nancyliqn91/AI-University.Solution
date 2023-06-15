@@ -57,5 +57,5 @@ No bugs
 
 ## License
 [MIT](license.txt)
-Copyright (c) 2023 Qian Li Joe Wahbeh Max Betich and Kymani Stephens
+Copyright (c) 2023 Qian Li, Joe Wahbeh, Max Betich and Kymani Stephens
 

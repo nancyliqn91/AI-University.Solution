@@ -1,0 +1,9 @@
+goals
+make an actual website
+-lots of practice with CRUD over the past few weeks kind of wanting to combine them all together in to a place that you could actualy visit
+
+Difficulties
+
+calendar API - had to make our own kind of lame weekday grid system
+Authentication - didn't have enough time
+ - manager roles

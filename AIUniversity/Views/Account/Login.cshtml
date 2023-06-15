@@ -14,16 +14,34 @@
   @Html.ValidationSummary("Please fix the following error(s) and then resubmit the form:") 
 }
 
+<div class = "container">
 @using (Html.BeginForm())
 {
-  @Html.LabelFor(m => m.Email)
+  @* @Html.LabelFor(m => m.Email)
+  
   @Html.TextBoxFor(m => m.Email)
 
   @Html.LabelFor(m => m.Password)
-  @Html.EditorFor(m => m.Password)
+  @Html.EditorFor(m => m.Password) *@
 
-  <input type="submit" value="Log in" class = "btn btn-primary mb-2"/>
+  <p>Log in</p>
+  <div class="row">
+    <div class="col-6 col-md-2"><p>Email: </p></div>
+    <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.Email)</div> 
+  </div>
+  <div class="row">
+     <div class="col-6 col-md-2"><p>Password: </p></div>
+     <div class="col-6 col-md-2">@Html.EditorFor(model => model.Password)</div> 
+  </div>
+  <div class="row">
+    <div class="col-6 col-md-2"><input type="submit" value="Log in" class = "btn btn-primary mb-2"/></div>
+  </div>
+
 }
+
+<br>
 
 <p>@Html.ActionLink("Register for an account", "Register", null, null, new { @class = "btn btn-secondary mb-2" })</p>
 <p>@Html.ActionLink("Back to accounts page", "Index", null, null, new { @class = "btn btn-secondary mb-2" })</p>
+
+</div>

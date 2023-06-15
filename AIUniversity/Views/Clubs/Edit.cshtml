@@ -7,31 +7,30 @@
 <h2>Edit</h2>
 
 <h4>Edit this club: @Html.DisplayFor(model => model.ClubName)</h4>
-
-@using (Html.BeginForm())
-{
-
-  @Html.HiddenFor(model => model.ClubName)
 <div class = "container">
+  @using (Html.BeginForm())
+  {
 
-  <div class="row">
-    <div class="col-6 col-md-2"><p>Name: </p></div>
-    <div class="col-6 col-md-2">@Html.EditorFor(model => model.ClubName)</div> 
-  </div>
-  <div class="row">
-     <div class="col-6 col-md-2"><p>President: </p></div>
-     <div class="col-6 col-md-2">@Html.EditorFor(model => model.ClubPresident)</div> 
-  </div>
-  
-  <div class="row">
-    <div class="col-6 col-md-2"><p>Description: </p></div>
-    <div class="col-6 col-md-2">@Html.EditorFor(model => model.ClubDescription)</div> 
-  </div>
-  <div class="row">
-    <div class="col-6 col-md-2"><input type="submit" value="Save"/></div>
-  </div>
+    @Html.HiddenFor(model => model.ClubName)
+
+    <div class="row">
+      <div class="col-6 col-md-2"><p>Name: </p></div>
+      <div class="col-6 col-md-2">@Html.EditorFor(model => model.ClubName)</div> 
+    </div>
+    <div class="row">
+      <div class="col-6 col-md-2"><p>President: </p></div>
+      <div class="col-6 col-md-2">@Html.EditorFor(model => model.ClubPresident)</div> 
+    </div>
+    
+    <div class="row">
+      <div class="col-6 col-md-2"><p>Description: </p></div>
+      <div class="col-6 col-md-2">@Html.EditorFor(model => model.ClubDescription)</div> 
+    </div>
+    <div class="row">
+      <div class="col-6 col-md-2"><input type="submit" value="Save"/></div>
+    </div>
+
+  }
+
+  <p>@Html.ActionLink("Back to list", "Index", null, null, new { @class = "btn btn-secondary mb-2" })</p>
 </div>
-
-}
-
-<p>@Html.ActionLink("Back to list", "Index", null, null, new { @class = "btn btn-secondary mb-2" })</p>

@@ -70,6 +70,9 @@ img {
 	border-color: #003300;
 }
 
+.margin-box {
+	margin: 5px;
+}
 .sub-header {
 	margin: 2rem;
 }

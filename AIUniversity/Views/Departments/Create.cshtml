@@ -8,25 +8,22 @@
 <hr />
 
 <p>@Html.ValidationMessageFor(model => model.DepartmentName, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
-
-@using (Html.BeginForm())
-{
-
 <div class = "container">
-  <p>Department</p>
-  <div class="row">
-    <div class="col-6 col-md-2"><p>Name: </p></div>
-    <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.DepartmentName)</div> 
-  </div>
-  <div class="row">
-     <div class="col-6 col-md-2"><p>Description: </p></div>
-     <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.DepartmentDescription)</div> 
-  </div>
-  <div class="row">
-    <div class="col-6 col-md-2"><input type="submit" value="Add Department" class = "btn btn-primary mb-2"/></div>
-  </div>
+  @using (Html.BeginForm())
+  {
+    <p>Department</p>
+    <div class="row">
+      <div class="col-6 col-md-2"><p>Name: </p></div>
+      <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.DepartmentName)</div> 
+    </div>
+    <div class="row">
+      <div class="col-6 col-md-2"><p>Description: </p></div>
+      <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.DepartmentDescription)</div> 
+    </div>
+    <div class="row">
+      <div class="col-6 col-md-2"><input type="submit" value="Add Department" class = "btn btn-primary mb-2"/></div>
+    </div>
+  }
+  <br>
+  <p>@Html.ActionLink("Show Departments", "Index", null, null, new { @class = "btn btn-secondary mb-2" })</p>
 </div>
-
-}
-<br>
-<p>@Html.ActionLink("Show Departments", "Index", null, null, new { @class = "btn btn-secondary mb-2" })</p>

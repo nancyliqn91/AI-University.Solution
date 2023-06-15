@@ -5,42 +5,40 @@
 @model AIUniversity.Models.Professor
 
 <h4>Add a new professor</h4>
-@using (Html.BeginForm())
-{
-
-  <div class = "container">
-  <p>Professor</p>
-  <div class="row">
-    <div class="col-6 col-md-2"><p>First Name: </p></div>
-    <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.ProfessorFirstName)</div> 
-  </div>
-  <div class="row">
-    <div class="col-6 col-md-2"><p>Last Name: </p></div>
-    <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.ProfessorLastName)</div> 
-  </div>
-  <div class="row">
-    <div class="col-6 col-md-2"><p>Email: </p></div>
-    <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.ProfessorEmail)</div> 
-  </div>
-  <div class="row">
-    <div class="col-6 col-md-2"><p>Date of Birth: </p></div>
-    <div class="col-6 col-md-2"> @Html.TextBoxFor(model => model.ProfessorDateOfBirth, new { type = "date"})</div> 
-  </div>
- 
-  <div class="row">
-    <div class="col-6 col-md-2"><p>Description: </p></div>
-    <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.ProfessorDescription)
-    </div> 
-  </div>
-  <div class="row">
-    <div class="col-6 col-md-2"><p>Department: </p></div>
-    <div class="col-6 col-md-2">@Html.DropDownList("DepartmentId")</div> 
-  </div>
-
-  <div class="row">
-    <div class="col-6 col-md-2"><input type="submit" value="Add Professor" class = "btn btn-primary mb-2"/></div>
-  </div>
-</div>
+<div class = "container">
+  @using (Html.BeginForm())
+  {
+    <p>Professor</p>
+    <div class="row">
+      <div class="col-6 col-md-2"><p>First Name: </p></div>
+      <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.ProfessorFirstName)</div> 
+    </div>
+    <div class="row">
+      <div class="col-6 col-md-2"><p>Last Name: </p></div>
+      <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.ProfessorLastName)</div> 
+    </div>
+    <div class="row">
+      <div class="col-6 col-md-2"><p>Email: </p></div>
+      <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.ProfessorEmail)</div> 
+    </div>
+    <div class="row">
+      <div class="col-6 col-md-2"><p>Date of Birth: </p></div>
+      <div class="col-6 col-md-2"> @Html.TextBoxFor(model => model.ProfessorDateOfBirth, new { type = "date"})</div> 
+    </div>
   
-}
-<p>@Html.ActionLink("Show all professors", "Index", null, null, new { @class = "btn btn-secondary mb-2" })</p>
+    <div class="row">
+      <div class="col-6 col-md-2"><p>Description: </p></div>
+      <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.ProfessorDescription)
+      </div> 
+    </div>
+    <div class="row">
+      <div class="col-6 col-md-2"><p>Department: </p></div>
+      <div class="col-6 col-md-2">@Html.DropDownList("DepartmentId")</div> 
+    </div>
+
+    <div class="row">
+      <div class="col-6 col-md-2"><input type="submit" value="Add Professor" class = "btn btn-primary mb-2"/></div>
+    </div>
+  }
+  <p>@Html.ActionLink("Show all professors", "Index", null, null, new { @class = "btn btn-secondary mb-2" })</p>
+</div>

@@ -18,7 +18,7 @@ namespace AIUniversity
       builder.Services.AddDbContext<AIUniversityContext>(
                         dbContextOptions => dbContextOptions
                           .UseMySql(
-                            builder.Configuration["ConnectionStrings:AZURE_SQL_CONNECTION"], ServerVersion.AutoDetect(builder.Configuration["ConnectionStrings:AZURE_SQL_CONNECTION"]
+                            builder.Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(builder.Configuration["ConnectionStrings:DefaultConnection"]
                           )
                         )
                       );

@@ -12,12 +12,13 @@
     <link rel="stylesheet" href="~/css/styles.css">
   </head>
   <body>
- 
+  
+  <div class="margin-box">
   @await Html.PartialAsync("Navbar")
-  @*@await Html.PartialAsync("Carousel")*@
   @RenderBody()
   <br>
   @await Html.PartialAsync("Footer")
+  </div>
   
   </body>
 </html>

@@ -8,40 +8,41 @@
 
 <p>@Html.ValidationMessageFor(m=>m.StudentLastName,"", new {@class = "text-danger", @style = "font-weight: 600;"})</p>
 
-@using (Html.BeginForm())
-{
-  @Html.HiddenFor(m => m.StudentId)
-
 <div class = "container">
-  <p>Student</p>
-  <div class="row">
-    <div class="col-6 col-md-2"><p>First Name: </p></div>
-    <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.StudentFirstName)</div> 
-  </div>
-  <div class="row">
-     <div class="col-6 col-md-2"><p>Last Name: </p></div>
-     <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.StudentLastName)</div> 
-  </div>
-  <div class="row">
-     <div class="col-6 col-md-2"><p>Email: </p></div>
-     <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.StudentEmail)</div> 
-  </div>
-  <div class="row">
-     <div class="col-6 col-md-2"><p>Date of Birth: </p></div>
-     <div class="col-6 col-md-2"> @Html.EditorFor(model => model.StudentDateOfBirth, new { type = "date"})</div> 
-  </div>
-  <div class="row">
-    <div class="col-6 col-md-2"><p>Department: </p></div>
-    <div class="col-6 col-md-2">@Html.DropDownList("DepartmentId")</div> 
-  </div>
-  <div class="row">
-    <div class="col-6 col-md-2"><p>Dorm: </p></div>
-    <div class="col-6 col-md-2">@Html.DropDownList("DormId")</div> 
-  </div>  
-  <div class="row">
-    <div class="col-6 col-md-2"><input type="submit" value="Save" class = "btn btn-primary mb-2"/></div>
-  </div>
-</div>
-}
+  @using (Html.BeginForm())
+  {
+    @Html.HiddenFor(m => m.StudentId)
 
-<p>@Html.ActionLink("Back to list","Index", null, null, new { @class = "btn btn-secondary mb-2" })<p>
+    <p>Student</p>
+    <div class="row">
+      <div class="col-6 col-md-2"><p>First Name: </p></div>
+      <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.StudentFirstName)</div> 
+    </div>
+    <div class="row">
+      <div class="col-6 col-md-2"><p>Last Name: </p></div>
+      <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.StudentLastName)</div> 
+    </div>
+    <div class="row">
+      <div class="col-6 col-md-2"><p>Email: </p></div>
+      <div class="col-6 col-md-2">@Html.TextBoxFor(model => model.StudentEmail)</div> 
+    </div>
+    <div class="row">
+      <div class="col-6 col-md-2"><p>Date of Birth: </p></div>
+      <div class="col-6 col-md-2"> @Html.EditorFor(model => model.StudentDateOfBirth, new { type = "date"})</div> 
+    </div>
+    <div class="row">
+      <div class="col-6 col-md-2"><p>Department: </p></div>
+      <div class="col-6 col-md-2">@Html.DropDownList("DepartmentId")</div> 
+    </div>
+    <div class="row">
+      <div class="col-6 col-md-2"><p>Dorm: </p></div>
+      <div class="col-6 col-md-2">@Html.DropDownList("DormId")</div> 
+    </div>  
+    <div class="row">
+      <div class="col-6 col-md-2"><input type="submit" value="Save" class = "btn btn-primary mb-2"/></div>
+    </div>
+
+  }
+
+  <p>@Html.ActionLink("Back to list","Index", null, null, new { @class = "btn btn-secondary mb-2" })<p>
+</div>
