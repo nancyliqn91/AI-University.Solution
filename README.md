@@ -22,14 +22,19 @@
 * For professors, only logged users can update information, for example, the logged professor can edit their identity information, including department and add courses.
 * For students, only logged users can update information, for example, the logged student can edit their identity information, including department and dorm, and add clubs and courses.
 
+## 🌻 Website Screenshot
+
+* Website
+![Screenshot of website](./AIUniversity/wwwroot/university.png)
+
 ## Setup/Installation Requirements
 
-* _Clone “AI University“ from the repository to your desktop_.
-* _Navigate to "AI University" directory via your local terminal command line_.
+* _Clone “AI-University“ from the repository to your desktop_.
+* _Navigate to "AI-University" directory via your local terminal command line_.
 * Run the app, first navigate to this project's production directory called "AIUniversity". 
 * Run `dotnet restore` to restore all the packages.
 * Add appsettings.json file, please see the "Database Connection String Setup" instruction below.
-* Create the database using the migrations in the "AIUniversity" project. Open your shell (e.g., Terminal or GitBash) to the production directory "FantacyRecipe", and `run dotnet ef database update`.
+* Create the database using the migrations in the "AIUniversity" project. Open your shell (e.g., Terminal or GitBash) to the production directory "AIUniversity", and run `dotnet ef database update`.
 * Within the production directory "AIUniversity", run `dotnet watch run` in the command line to start the project in development mode with a watcher.
 * Open the browser to _https://localhost:5001_. If you cannot access localhost:5001 it is likely because you have not configured a .NET developer security certificate for HTTPS. To learn about this, review this lesson: [Redirecting to HTTPS and Issuing a Security Certificate](https://www.learnhowtoprogram.com/c-and-net/basic-web-applications/redirecting-to-https-and-issuing-a-security-certificate).
 
@@ -40,7 +45,7 @@
 
 
 ```
-AI University/AIUniversity/appsettings.json
+AI-University.Solution/AIUniversity/appsettings.json
 
  {
     "ConnectionStrings": {
